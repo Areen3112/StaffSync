@@ -1,0 +1,88 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.25s $ease-apple;
+}
+
+.modal {
+  width: 100%;
+  background: rgba(18, 19, 25, 0.96);
+  border: 1px solid $color-border-medium;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-lg;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: scaleUp 0.3s $ease-apple;
+}
+
+.header {
+  padding: 22px 24px;
+  border-bottom: 1px solid $color-border-subtle;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.title {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: $color-text-primary;
+}
+
+.description {
+  font-size: 13px;
+  color: $color-text-secondary;
+  margin-top: 4px;
+}
+
+.closeBtn {
+  color: $color-text-tertiary;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px;
+  border-radius: $radius-pill;
+  transition: $transition-default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: $color-text-primary;
+  }
+}
+
+.body {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

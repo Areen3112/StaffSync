@@ -1,0 +1,467 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+// Welcome Banner
+.welcomeBanner {
+  background: rgba(18, 19, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.welcomeInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.dateLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: $color-accent-blue-light;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.greeting {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: $color-text-primary;
+  margin-bottom: 4px;
+}
+
+.subGreeting {
+  font-size: 14px;
+  color: $color-text-secondary;
+}
+
+// Quick Clock Widget
+.attendancePillWidget {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid $color-border-subtle;
+  padding: 8px 12px 8px 18px;
+  border-radius: $radius-pill;
+
+  @include mobile {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.clockMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.clockLabel {
+  font-size: 11px;
+  color: $color-text-tertiary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.clockStatus {
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.clockBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 18px;
+  border-radius: $radius-pill;
+  font-size: 13px;
+  font-weight: 600;
+  transition: $transition-default;
+
+  &.clockIn {
+    background: $color-success;
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(48, 209, 88, 0.3);
+
+    &:hover {
+      background: #3be263;
+      transform: scale(1.02);
+    }
+  }
+
+  &.clockOut {
+    background: $color-warning;
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(255, 159, 10, 0.3);
+
+    &:hover {
+      background: #ffaa24;
+      transform: scale(1.02);
+    }
+  }
+
+  &.disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: $color-text-tertiary;
+    cursor: not-allowed;
+  }
+}
+
+// Role Dashboards Layout
+.roleDashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  background: rgba(18, 19, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  padding: 22px 24px;
+  transition: $transition-default;
+
+  &:hover {
+    border-color: $color-border-medium;
+    background: rgba(24, 25, 32, 0.85);
+  }
+}
+
+.statHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.statTitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: $color-text-secondary;
+}
+
+.statIcon {
+  color: $color-accent-blue-light;
+}
+
+.statValue {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: $color-text-primary;
+  margin-bottom: 8px;
+}
+
+.statUnit {
+  font-size: 16px;
+  font-weight: 500;
+  color: $color-text-secondary;
+}
+
+.statFooter {
+  font-size: 12px;
+  color: $color-text-tertiary;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.highlight {
+  color: $color-success;
+  font-weight: 500;
+}
+
+.statLink {
+  color: $color-accent-blue-light;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Two-Column Grid
+.twoColumnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panelCard {
+  background: rgba(18, 19, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  padding: 26px;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.panelTitle {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.panelLink {
+  font-size: 13px;
+  color: $color-accent-blue-light;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Department Breakdown List
+.departmentList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.deptItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.deptInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.deptName {
+  font-weight: 500;
+  color: $color-text-primary;
+}
+
+.deptCount {
+  color: $color-text-secondary;
+}
+
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, $color-accent-blue 0%, #60a5fa 100%);
+  border-radius: 999px;
+  transition: width 0.6s $ease-apple;
+}
+
+// Action Grid
+.actionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.actionTile {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: $transition-default;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: $color-border-medium;
+    transform: translateY(-2px);
+  }
+}
+
+.actionIcon {
+  color: $color-accent-blue-light;
+}
+
+.actionLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+// Roster Grid
+.rosterGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rosterCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.avatarCircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.memberMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.memberName {
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.memberDesignation {
+  font-size: 12px;
+  color: $color-text-secondary;
+  margin-top: 2px;
+}
+
+.memberEmail {
+  font-size: 11px;
+  color: $color-text-tertiary;
+  margin-top: 4px;
+}
+
+// Announcements stream
+.announcementStream {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.annItem {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  padding: 14px;
+}
+
+.annHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.annTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.annSnippet {
+  font-size: 12px;
+  color: $color-text-secondary;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.annMeta {
+  font-size: 10px;
+  color: $color-text-tertiary;
+}
+.performanceNote {
+  color: $color-text-tertiary;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+
+.performanceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.performanceCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.025);
+  color: $color-text-secondary;
+  font-size: 12px;
+  line-height: 1.45;
+
+  strong {
+    color: $color-text-primary;
+    font-size: 14px;
+  }
+}

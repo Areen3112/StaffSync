@@ -1,0 +1,326 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  color: $color-text-secondary;
+}
+
+.reportTabs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid $color-border-subtle;
+  padding-bottom: 14px;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: $radius-pill;
+  font-size: 13px;
+  font-weight: 500;
+  color: $color-text-secondary;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $color-border-subtle;
+  transition: $transition-default;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+
+  &.active {
+    background: rgba(0, 113, 227, 0.2);
+    border-color: $color-accent-blue;
+    color: $color-accent-blue-light;
+    font-weight: 600;
+  }
+}
+
+.reportContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metricCard {
+  background: rgba(18, 19, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mLabel {
+  font-size: 12px;
+  color: $color-text-secondary;
+  margin-bottom: 6px;
+}
+
+.mValue {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: $color-text-primary;
+  margin-bottom: 8px;
+}
+
+.mSub {
+  font-size: 11px;
+  color: $color-text-tertiary;
+}
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chartCard {
+  background: rgba(18, 19, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  padding: 24px;
+}
+
+.chartHeader {
+  margin-bottom: 24px;
+}
+
+.chartTitle {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+// Custom bar visualization
+.barVisualContainer {
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $color-border-subtle;
+}
+
+.barCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.barTrack {
+  flex: 1;
+  width: 100%;
+  max-width: 44px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.barFill {
+  width: 100%;
+  background: linear-gradient(180deg, $color-accent-blue-light 0%, $color-accent-blue 100%);
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  transition: height 0.6s $ease-apple;
+
+  &:hover .barTooltip {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+}
+
+.barFillAlt {
+  width: 100%;
+  background: linear-gradient(180deg, #a78bfa 0%, #7c3aed 100%);
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  transition: height 0.6s $ease-apple;
+
+  &:hover .barTooltip {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+}
+
+.barTooltip {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #ffffff;
+  pointer-events: none;
+  opacity: 0;
+  transition: $transition-default;
+  white-space: nowrap;
+}
+
+.barLabel {
+  font-size: 11px;
+  color: $color-text-tertiary;
+  margin-top: 10px;
+}
+
+// Department list
+.deptProgressList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.deptRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.deptRowMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.deptRowName {
+  color: $color-text-secondary;
+}
+
+.deptRowRate {
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.deptTrack {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.deptFill {
+  height: 100%;
+  background: $color-success;
+  border-radius: 999px;
+}
+
+.deptFillAlt {
+  height: 100%;
+  background: $color-accent-blue;
+  border-radius: 999px;
+}
+
+// Category Distribution
+.categoryDistribution {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.catItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.catMeta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.catName {
+  color: $color-text-secondary;
+}
+
+.loadingBox {
+  padding: 60px;
+  text-align: center;
+  color: $color-text-tertiary;
+}
+.performanceNote {
+  color: $color-text-tertiary;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+
+.performanceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.performanceCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.025);
+  color: $color-text-secondary;
+  font-size: 12px;
+  line-height: 1.45;
+
+  strong {
+    color: $color-text-primary;
+    font-size: 14px;
+  }
+}

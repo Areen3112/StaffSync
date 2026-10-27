@@ -1,0 +1,376 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  color: $color-text-secondary;
+}
+
+// Balance Grid
+.balanceGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.balanceCard {
+  background: rgba(18, 19, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: $transition-default;
+
+  &:hover {
+    border-color: $color-border-medium;
+  }
+}
+
+.balanceLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: $color-text-secondary;
+  margin-bottom: 6px;
+}
+
+.balanceNum {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: $color-text-primary;
+  margin-bottom: 4px;
+}
+
+.balanceSub {
+  font-size: 11px;
+  color: $color-text-tertiary;
+}
+
+// Filter Tabs
+.filterTabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.tab {
+  padding: 8px 16px;
+  border-radius: $radius-pill;
+  font-size: 13px;
+  font-weight: 500;
+  color: $color-text-secondary;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $color-border-subtle;
+  transition: $transition-default;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+
+  &.active {
+    background: $color-accent-blue;
+    color: #ffffff;
+    font-weight: 600;
+    border-color: transparent;
+  }
+}
+
+// Table
+.tableCard {
+  background: rgba(18, 19, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+
+  th {
+    padding: 16px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $color-text-tertiary;
+    border-bottom: 1px solid $color-border-subtle;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  td {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: $color-text-secondary;
+  }
+}
+
+.tableRow {
+  transition: $transition-default;
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.empCell {
+  display: flex;
+  flex-direction: column;
+}
+
+.empName {
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.empDept {
+  font-size: 11px;
+  color: $color-text-tertiary;
+}
+
+.typeBadge {
+  font-size: 11px;
+  font-weight: 600;
+  color: $color-accent-blue-light;
+  background: rgba(41, 151, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: $radius-sm;
+}
+
+.durationTag {
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.datesCell {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.dateTo {
+  color: $color-text-tertiary;
+}
+
+.reasonText {
+  display: inline-block;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reviewBtn {
+  padding: 6px 14px;
+  background: rgba(41, 151, 255, 0.15);
+  border: 1px solid rgba(41, 151, 255, 0.3);
+  color: $color-accent-blue-light;
+  border-radius: $radius-pill;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition-default;
+
+  &:hover {
+    background: $color-accent-blue;
+    color: #ffffff;
+  }
+}
+
+.reviewedLabel {
+  font-size: 11px;
+  color: $color-text-tertiary;
+}
+
+.emptyCell {
+  text-align: center;
+  padding: 40px !important;
+  color: $color-text-tertiary;
+}
+
+// Form & Review specifics
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    color: $color-text-secondary;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid $color-border-subtle;
+    border-radius: $radius-md;
+    color: $color-text-primary;
+    font-size: 13px;
+
+    &:focus {
+      border-color: $color-accent-blue;
+    }
+  }
+
+  select option {
+    background: $color-bg-elevated;
+    color: $color-text-primary;
+  }
+}
+
+.formActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid $color-border-subtle;
+}
+
+.reviewModalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.requestSummary {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summaryRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+}
+
+.sumLabel {
+  font-size: 11px;
+  color: $color-text-tertiary;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.reasonBox {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: $radius-sm;
+  color: $color-text-secondary;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.decisionActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.rejectBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  border-radius: $radius-pill;
+  background: rgba(255, 69, 58, 0.12);
+  border: 1px solid rgba(255, 69, 58, 0.3);
+  color: $color-danger;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition-default;
+
+  &:hover {
+    background: $color-danger;
+    color: #ffffff;
+  }
+}
+
+.approveBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  border-radius: $radius-pill;
+  background: rgba(48, 209, 88, 0.15);
+  border: 1px solid rgba(48, 209, 88, 0.3);
+  color: $color-success;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition-default;
+
+  &:hover {
+    background: $color-success;
+    color: #ffffff;
+  }
+}

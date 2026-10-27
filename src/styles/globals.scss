@@ -1,0 +1,156 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'reset';
+
+// Global Utility Classes
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  @include mobile {
+    padding: 0 16px;
+  }
+}
+
+.pill-btn-primary {
+  @include pill-button-primary;
+}
+
+.pill-btn-secondary {
+  @include pill-button-secondary;
+}
+
+.glass-card {
+  @include glass-card;
+}
+
+.glass-card-interactive {
+  @include glass-card;
+  @include glass-card-hover;
+}
+
+// Typography Utility Classes
+.heading-display {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+
+  @include mobile {
+    font-size: 36px;
+  }
+}
+
+.heading-lg {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+.heading-md {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.heading-sm {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #2997ff 0%, #90b8f8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// Badge styles
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: $radius-pill;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+
+  &.badge-success {
+    background: $color-success-bg;
+    color: $color-success;
+    border: 1px solid rgba(48, 209, 88, 0.2);
+  }
+
+  &.badge-warning {
+    background: $color-warning-bg;
+    color: $color-warning;
+    border: 1px solid rgba(255, 159, 10, 0.2);
+  }
+
+  &.badge-danger {
+    background: $color-danger-bg;
+    color: $color-danger;
+    border: 1px solid rgba(255, 69, 58, 0.2);
+  }
+
+  &.badge-info {
+    background: $color-info-bg;
+    color: $color-info;
+    border: 1px solid rgba(191, 90, 242, 0.2);
+  }
+
+  &.badge-neutral {
+    background: rgba(255, 255, 255, 0.08);
+    color: $color-text-secondary;
+    border: 1px solid $color-border-subtle;
+  }
+}
+
+// Animation helpers
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s $ease-apple forwards;
+}
+
+// Skeleton loading
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.09) 37%,
+    rgba(255, 255, 255, 0.04) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: $radius-md;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}

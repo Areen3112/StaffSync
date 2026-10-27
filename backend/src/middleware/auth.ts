@@ -1,0 +1,5 @@
+import {NextFunction,Request,Response} from 'express';import jwt from 'jsonwebtoken';import {env} from '../config/env';import {User} from '../models';
+declare global {namespace Express {interface Request {user?:any}}}
+export async function auth(req:Request,res:Response,next:NextFunction){try{const raw=req.headers.authorization?.replace(/^Bearer\s+/i,'');if(!raw) return res.status(401).json({success:false,message:'Authentication required'});const payload=jwt.verify(raw,env.JWT_SECRET) as any;const user=await User.findById(payload.sub);if(!user||!user.active)return res.status(401).json({success:false,message:'Session is no longer valid'});req.user=user;next()}catch{return res.status(401).json({success:false,message:'Invalid or expired session'})}}
+export const roles=(...allowed:string[])=>(req:Request,res:Response,next:NextFunction)=>allowed.includes(req.user?.role)?next():res.status(403).json({success:false,message:'Insufficient permissions'});
+export const token=(user:any)=>jwt.sign({sub:user.id},env.JWT_SECRET,{expiresIn:'8h'});

@@ -1,0 +1,26 @@
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 2px;
+  color: var(--color-text-secondary, #a7a7b2);
+  font-size: 12px;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+
+  button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 480px) {
+  .controls {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

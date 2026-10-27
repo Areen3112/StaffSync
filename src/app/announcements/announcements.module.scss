@@ -1,0 +1,206 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  color: $color-text-secondary;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: rgba(18, 19, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: $transition-default;
+
+  &:hover {
+    background: rgba(24, 25, 32, 0.85);
+    border-color: $color-border-medium;
+    transform: translateY(-2px);
+  }
+
+  &.urgentCard {
+    border-color: rgba(255, 69, 58, 0.3);
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.audienceTag {
+  font-size: 11px;
+  color: $color-text-tertiary;
+  letter-spacing: 0.04em;
+  strong {
+    color: $color-accent-blue-light;
+  }
+}
+
+.title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: $color-text-primary;
+}
+
+.contentSnippet {
+  font-size: 13px;
+  color: $color-text-secondary;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 11px;
+  color: $color-text-tertiary;
+}
+
+.authorMeta, .dateMeta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: $color-text-tertiary;
+}
+
+// Modal specifics
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modalBadges {
+  display: flex;
+  gap: 10px;
+}
+
+.fullText {
+  font-size: 14px;
+  line-height: 1.6;
+  color: $color-text-primary;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-lg;
+  padding: 20px;
+  white-space: pre-wrap;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.createForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    color: $color-text-secondary;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid $color-border-subtle;
+    border-radius: $radius-md;
+    color: $color-text-primary;
+    font-size: 13px;
+
+    &:focus {
+      border-color: $color-accent-blue;
+    }
+  }
+
+  select option {
+    background: $color-bg-elevated;
+    color: $color-text-primary;
+  }
+}
+
+.formActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid $color-border-subtle;
+}

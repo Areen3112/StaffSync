@@ -1,0 +1,305 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pageTitle {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  color: $color-text-secondary;
+}
+
+// Today Card
+.todayCard {
+  background: rgba(18, 19, 25, 0.75);
+  backdrop-filter: blur(25px);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  @include tablet {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.todayMain {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.todayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid $color-border-subtle;
+}
+
+.todayBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-accent-blue-light;
+}
+
+.currentDate {
+  font-size: 13px;
+  color: $color-text-tertiary;
+}
+
+.shiftMetrics {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+.shiftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metricLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: $color-text-tertiary;
+  letter-spacing: 0.04em;
+}
+
+.metricValue {
+  font-size: 20px;
+  font-weight: 700;
+  color: $color-text-primary;
+}
+
+.shiftDivider {
+  width: 1px;
+  height: 36px;
+  background: $color-border-subtle;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.actionSection {
+  display: flex;
+  align-items: center;
+}
+
+.clockActionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 28px;
+  border-radius: $radius-pill;
+  font-size: 15px;
+  font-weight: 600;
+  transition: $transition-default;
+  cursor: pointer;
+
+  &.clockIn {
+    background: $color-success;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(48, 209, 88, 0.35);
+
+    &:hover {
+      background: #3be263;
+      transform: scale(1.02);
+    }
+  }
+
+  &.clockOut {
+    background: $color-warning;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(255, 159, 10, 0.35);
+
+    &:hover {
+      background: #ffaa24;
+      transform: scale(1.02);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  @include tablet {
+    width: 100%;
+  }
+}
+
+.shiftDoneBanner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(48, 209, 88, 0.1);
+  border: 1px solid rgba(48, 209, 88, 0.25);
+  border-radius: $radius-pill;
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-success;
+}
+
+.doneIcon {
+  color: $color-success;
+}
+
+// Filter Bar
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.datePickerWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filterIcon {
+  position: absolute;
+  left: 12px;
+  color: $color-text-tertiary;
+  pointer-events: none;
+}
+
+.dateInput {
+  height: 40px;
+  padding: 0 14px 0 36px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-md;
+  color: $color-text-primary;
+  font-size: 13px;
+}
+
+.clearBtn {
+  font-size: 12px;
+  color: $color-accent-blue-light;
+  background: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.totalRecords {
+  font-size: 13px;
+  color: $color-text-secondary;
+}
+
+// Table
+.tableCard {
+  background: rgba(18, 19, 25, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid $color-border-subtle;
+  border-radius: $radius-xl;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+
+  th {
+    padding: 16px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $color-text-tertiary;
+    border-bottom: 1px solid $color-border-subtle;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  td {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: $color-text-secondary;
+  }
+}
+
+.tableRow {
+  transition: $transition-default;
+  &:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+}
+
+.empInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.empName {
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.empDept {
+  font-size: 11px;
+  color: $color-text-tertiary;
+}
+
+.tableDate {
+  color: $color-text-primary;
+  font-weight: 500;
+}
+
+.timeTag {
+  font-family: $font-family-mono;
+  font-size: 12px;
+}
+
+.durationTag {
+  font-weight: 500;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 40px !important;
+  color: $color-text-tertiary;
+}

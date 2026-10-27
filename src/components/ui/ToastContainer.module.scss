@@ -1,0 +1,78 @@
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.toastViewport {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  width: calc(100% - 48px);
+  pointer-events: none;
+}
+
+.toastItem {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(20, 21, 26, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid $color-border-medium;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+  color: $color-text-primary;
+  animation: slideUp 0.35s $ease-apple;
+
+  &.success {
+    border-color: rgba(48, 209, 88, 0.35);
+    .icon {
+      color: $color-success;
+    }
+  }
+
+  &.error {
+    border-color: rgba(255, 69, 58, 0.35);
+    .icon {
+      color: $color-danger;
+    }
+  }
+
+  &.info {
+    border-color: rgba(41, 151, 255, 0.35);
+    .icon {
+      color: $color-accent-blue-light;
+    }
+  }
+}
+
+.message {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.closeBtn {
+  color: $color-text-tertiary;
+  transition: $transition-default;
+  padding: 4px;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
