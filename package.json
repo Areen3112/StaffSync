@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node src/tests/run-tests.mjs"
+    "test": "node src/tests/run-tests.mjs && node --test src/tests/api-error.test.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

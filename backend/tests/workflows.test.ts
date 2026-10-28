@@ -188,7 +188,9 @@ describe('StaffSync persisted API workflows (isolated MongoDB database)', () => 
 
   it('persists attendance transitions and prevents cross-team attendance reads', async () => {
     expect((await request(app).post('/api/attendance/clock-in').set(auth('employee'))).status).toBe(201);
-    expect((await request(app).post('/api/attendance/clock-in').set(auth('employee'))).status).toBe(409);
+    const duplicateClockIn = await request(app).post('/api/attendance/clock-in').set(auth('employee'));
+    expect(duplicateClockIn.status).toBe(409);
+    expect(duplicateClockIn.body.message).toBe('Already clocked in today');
     const out = await request(app).post('/api/attendance/clock-out').set(auth('employee'));
     expect(out.status).toBe(200);
     expect(out.body.attendance.workingHours).toBeGreaterThanOrEqual(0);
@@ -201,7 +203,9 @@ describe('StaffSync persisted API workflows (isolated MongoDB database)', () => 
     const payload = { leaveType: 'annual', startDate: '2026-12-10', endDate: '2026-12-11', reason: 'workflow test' };
     const applied = await request(app).post('/api/leaves').set(auth('employee')).send(payload);
     expect(applied.status).toBe(201);
-    expect((await request(app).post('/api/leaves').set(auth('employee')).send(payload)).status).toBe(409);
+    const overlappingLeave = await request(app).post('/api/leaves').set(auth('employee')).send(payload);
+    expect(overlappingLeave.status).toBe(409);
+    expect(overlappingLeave.body.message).toBe('Leave dates overlap an existing request');
     const outsiderLeave = await Leave.findOne({ employee: profile.outsider._id });
     expect((await request(app).get(`/api/leaves/${outsiderLeave!.id}`).set(auth('employee'))).status).toBe(403);
     expect((await request(app).patch(`/api/leaves/${outsiderLeave!.id}/decision`).set(auth('manager')).send({ status: 'approved' })).status).toBe(403);
@@ -209,7 +213,9 @@ describe('StaffSync persisted API workflows (isolated MongoDB database)', () => 
     const approved = await request(app).patch(`/api/leaves/${applied.body.leave.id}/decision`).set(auth('manager')).send({ status: 'approved' });
     expect(approved.status).toBe(200);
     expect(approved.body.leave.status).toBe('approved');
-    expect((await request(app).patch(`/api/leaves/${applied.body.leave.id}/decision`).set(auth('manager')).send({ status: 'rejected' })).status).toBe(409);
+    const repeatedDecision = await request(app).patch(`/api/leaves/${applied.body.leave.id}/decision`).set(auth('manager')).send({ status: 'rejected' });
+    expect(repeatedDecision.status).toBe(409);
+    expect(repeatedDecision.body.message).toBe('Leave not found or already decided');
     const notifications = await request(app).get('/api/notifications').set(auth('employee'));
     expect(notifications.body.notifications.some((x: any) => x.relatedResource === applied.body.leave.id)).toBe(true);
   });
@@ -226,7 +232,9 @@ describe('StaffSync persisted API workflows (isolated MongoDB database)', () => 
     const created = await request(app).post('/api/trainings').set(auth('hr')).send({ title: 'Test class', description: 'Workflow', instructor: 'HR', startDate: '2026-12-01', endDate: '2026-12-02', capacity: 2, category: 'Test' });
     expect(created.status).toBe(201);
     expect((await request(app).post(`/api/trainings/${created.body.training.id}/enroll`).set(auth('employee'))).status).toBe(200);
-    expect((await request(app).post(`/api/trainings/${created.body.training.id}/enroll`).set(auth('employee'))).status).toBe(409);
+    const duplicateEnrollment = await request(app).post(`/api/trainings/${created.body.training.id}/enroll`).set(auth('employee'));
+    expect(duplicateEnrollment.status).toBe(409);
+    expect(duplicateEnrollment.body.message).toBe('Already enrolled');
     expect((await request(app).post(`/api/trainings/${created.body.training.id}/enroll`).set(auth('outsider'))).status).toBe(200);
     expect((await request(app).post(`/api/trainings/${created.body.training.id}/enroll`).set(auth('manager'))).status).toBe(409);
     expect((await request(app).post('/api/trainings').set(auth('employee')).send({ title: 'Not allowed' })).status).toBe(403);

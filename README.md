@@ -31,13 +31,15 @@ The seed script is limited to NODE_ENV=development and the local staffsync datab
 
 ### Start the API and frontend
 
-In one terminal:
+Start each development server in its own terminal and leave both commands running while using the app. Closing the backend terminal stops the API process; start it again if `/api/health` is no longer reachable. If `NEXT_PUBLIC_API_URL` changes, restart the frontend so Next.js reloads the public environment setting.
+
+In the first terminal:
 
 ```sh
 cd backend && npm run dev
 ```
 
-In another terminal (the local setup uses port 3002 because port 3000 is occupied on this Mac):
+In a second terminal (the local setup uses port 3002 because port 3000 is occupied on this Mac):
 
 ```sh
 npm run dev -- --port 3002

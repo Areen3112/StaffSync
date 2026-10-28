@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/store/provider';
 import { setCredentials, setError } from '@/store/slices/authSlice';
 import { addToast } from '@/store/slices/uiSlice';
 import { authApi } from '@/services/auth-api';
+import { getApiErrorMessage } from '@/services/api-error.mjs';
 import { UserRole } from '@/types';
 import { ShieldCheck, Eye, EyeOff, ArrowRight, Lock, Mail, Sparkles } from 'lucide-react';
 import styles from './login.module.scss';
@@ -69,8 +70,7 @@ function LoginForm() {
       );
       router.push('/dashboard');
     } catch (err: unknown) {
-      const errorMsg =
-        err instanceof Error ? err.message : 'Invalid credentials or network error. Please try again.';
+      const errorMsg = getApiErrorMessage(err, 'login');
       setFormError(errorMsg);
       dispatch(setError(errorMsg));
     } finally {
